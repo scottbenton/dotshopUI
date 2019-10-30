@@ -1,1 +1,0 @@
-WIP - This application is probably outside of the scope of what I can reasonably achieve, but it will be a fantastic experience. This app aims to be a drill writing tool for marching band, that will allow users to create and view complex forms.
