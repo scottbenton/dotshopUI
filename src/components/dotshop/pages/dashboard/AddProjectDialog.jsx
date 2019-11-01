@@ -1,17 +1,26 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   Button,
-  TextField
+  TextField,
+  Grid
 } from '@material-ui/core';
 import { api } from 'api/api';
 
 import { updateStateObjectByKey } from 'utilities/StateHelpers';
 
+const useStyles = makeStyles(theme => ({
+  inputGrid: {
+    marginBottom: theme.spacing(2),
+  }
+}));
+
 export function AddProjectDialog(props) {
+  const classes = useStyles();
   const { open, setOpen } = props;
   const [loading, setLoading] = React.useState(false);
 
@@ -38,13 +47,27 @@ export function AddProjectDialog(props) {
     >
       <DialogTitle id='alert-dialog-title'>Create new Project</DialogTitle>
       <DialogContent>
-        <TextField
-          label='Project Name'
-          value={projectInfo.name}
-          onChange={(evt) => updateProjectInfo('name', evt.target.value)}
-          fullWidth
-        />
-        Hi im the placeholder for the content
+        <Grid container>
+          <Grid item xs={12} className={classes.inputGrid}>
+            <TextField
+              label='Project Name'
+              variant='filled'
+              value={projectInfo.name || ''}
+              onChange={(evt) => updateProjectInfo('name', evt.target.value)}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} className={classes.inputGrid}>
+            <TextField
+              label='Project Description'
+              variant='filled'
+              value={projectInfo.description || ''}
+              onChange={(evt) => updateProjectInfo('description', evt.target.value)}
+              fullWidth
+              multiline
+            />
+          </Grid>
+        </Grid>
       </DialogContent>
       <DialogActions>
         <Button onClick={() => setOpen(false)} color="primary">

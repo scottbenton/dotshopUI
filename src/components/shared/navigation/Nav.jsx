@@ -4,6 +4,7 @@ import { NavBar } from './NavBar';
 import { NavPage } from './NavPage';
 import { useCurrentUser } from 'api/auth';
 import { CircularProgress } from '@material-ui/core';
+import { useIsTokenLoaded } from 'api/auth/FirebaseUser';
 
 const useStyles = makeStyles(theme => ({
   progress: {
@@ -18,9 +19,12 @@ export function Nav(props) {
   const { children, ...otherProps } = props;
 
   const user = useCurrentUser();
+  const tokenLoaded = useIsTokenLoaded();
+
+  const loading = (typeof user === 'undefined' || (user && !tokenLoaded));
   return (
     <>
-      {typeof user !== 'undefined' ?
+      {!loading ?
         <>
           <NavBar {...otherProps} />
           <NavPage>

@@ -9,7 +9,7 @@ import { Nav } from 'components/shared/navigation/Nav';
 import AuthInstance, { AuthContext } from 'api/auth';
 
 import { PAGES } from 'constants/Pages';
-import * as ROUTES from 'constants/routes';
+import { ROUTES } from 'constants/routes';
 
 
 export function DotShop(props) {
