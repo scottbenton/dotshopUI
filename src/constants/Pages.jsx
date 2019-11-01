@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import * as ROUTES from 'constants/routes';
+import { ROUTES } from 'constants/routes';
 
 import { AccountPage } from 'pages/AccountPage';
 import { AdminPage } from 'pages/AdminPage';
 import { ForgotPasswordPage } from 'pages/ForgotPasswordPage';
-import { DashboardPage } from 'pages/Dashboard';
+import { DashboardPage } from 'pages/DashboardPage';
 import { LandingPage } from 'pages/LandingPage';
 import { LoginPage } from 'pages/LoginPage';
 import { SignUpPage } from 'pages/SignUpPage';
+import { ProjectPage } from 'pages/ProjectPage';
 
 export const PAGES = {
   LOGIN: {
@@ -46,5 +47,11 @@ export const PAGES = {
     title: "Sign Up",
     link: React.forwardRef((props, ref) => <Link to={ROUTES.SIGN_UP} innerRef={ref} {...props} />),
     component: (props) => <SignUpPage {...props} />,
+  },
+  PROJECT: {
+    title: "Projects",
+    link: React.forwardRef((props, ref) => <Link to={ROUTES.PROJECT} innerRef={ref} {...props} />),
+    component: (props) => <ProjectPage {...props} />
   }
 }
+

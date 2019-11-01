@@ -1,7 +1,10 @@
-export const LANDING = '/';
-export const SIGN_UP = '/signup';
-export const LOGIN = '/login';
-export const DASHBOARD = '/dashboard';
-export const ACCOUNT = '/account';
-export const ADMIN = '/admin';
-export const PASSWORD_FORGET = '/forgot-password';
+export const ROUTES = {
+  LANDING: '/',
+  SIGN_UP: '/signup',
+  LOGIN: '/login',
+  DASHBOARD: '/dashboard',
+  ACCOUNT: '/account',
+  ADMIN: '/admin',
+  PASSWORD_FORGET: '/forgot-password',
+  PROJECT: '/projects',
+}

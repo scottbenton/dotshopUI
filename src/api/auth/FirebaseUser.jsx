@@ -7,17 +7,27 @@ export function useCurrentUser() {
   const [user, setUser] = React.useState();
 
   firebase.auth.onAuthStateChanged(async authUser => {
-    console.log(authUser);
-    if (authUser) {
-      await authUser.getIdToken(true).then((token) => {
-        api.setHeader('token', token);
-      });
-    }
-    else {
-      await api.setHeader('token', null);
-    }
     setUser(authUser || null);
   });
 
   return user;
+}
+
+export function useIsTokenLoaded() {
+  const firebase = useAuth();
+  const [tokenLoaded, setTokenLoaded] = React.useState(false);
+
+  firebase.auth.onAuthStateChanged(async authUser => {
+    if (authUser) {
+      await authUser.getIdToken(true).then((token) => {
+        api.setHeader('token', token);
+        setTokenLoaded(true);
+      });
+    }
+    else {
+      api.setHeader('token', null);
+      setTokenLoaded(false);
+    }
+  })
+  return tokenLoaded;
 }

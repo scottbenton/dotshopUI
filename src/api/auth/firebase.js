@@ -18,7 +18,6 @@ class Firebase {
 
     this.auth = app.auth();
   }
-
   // AUTHENTICATION API
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
@@ -45,7 +44,6 @@ class Firebase {
 
   doGetCurrentUserUID = () =>
     this.auth.currentUser ? this.auth.currentUser.uid : null;
-
 }
 
 export default Firebase;

@@ -1,6 +1,6 @@
 import AuthContext, { useAuth } from './FirebaseContext';
 import AuthInstance from './firebase';
-import { useCurrentUser } from './FirebaseUser';
+import { useCurrentUser, useIsTokenLoaded } from './FirebaseUser';
 
 export default AuthInstance;
-export { AuthContext, useCurrentUser, useAuth };
+export { AuthContext, useCurrentUser, useIsTokenLoaded, useAuth };

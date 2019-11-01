@@ -7,7 +7,7 @@ import {
   Button,
 } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
-import * as ROUTES from 'constants/routes';
+import { ROUTES } from 'constants/routes';
 import { AuthPage } from 'components/shared/AuthPage';
 
 import { updateStateObjectByKey } from 'utilities/StateHelpers';
