@@ -11,6 +11,13 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '100%',
     textAlign: 'left',
+  },
+  header: {
+    textDecoration: 'none',
+    fontFamily: 'comfortaa',
+  },
+  description: {
+    whiteSpace: 'pre-wrap'
   }
 }));
 
@@ -22,20 +29,20 @@ export function AboutProject(props) {
     <div className={classes.root}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Typography variant='h4' gutterBottom>
+          <Typography variant='h5' component='h2' gutterBottom className={classes.header}>
             Show Details
           </Typography>
         </Grid>
 
         <Grid item xs={12}>
-          <Typography variant='h6' className={classes.leftAlignText}>
+          <Typography variant='h6' component='h3' className={classes.leftAlignText}>
             About the Show
           </Typography>
           <Divider className={classes.centeredDivider} />
         </Grid>
 
         <Grid item xs={12}>
-          <Typography className={classes.leftAlignText}>
+          <Typography className={classes.description}>
             {project.description || ''}
           </Typography>
         </Grid>

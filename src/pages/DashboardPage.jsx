@@ -29,15 +29,26 @@ const useStyles = makeStyles(theme => ({
     right: theme.spacing(2)
   },
   card: {
+    display: 'flex',
+    alignContent: 'flex-start',
+    flexWrap: 'wrap',
     textAlign: 'left',
     height: '100%'
   },
   topCard: {
+    width: '100%',
     display: 'flex',
     alignItems: 'flex-end',
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
     height: 200,
+  },
+  header: {
+    textDecoration: 'none',
+    fontFamily: 'comfortaa',
+  },
+  textContent: {
+    width: '100%',
   }
 }))
 
@@ -75,7 +86,7 @@ export function DashboardPage(props) {
         />
       }
       <HeaderPage header={
-        <Typography variant='h4'>
+        <Typography variant='h4' component='h1' className={classes.header}>
           Your Shows
         </Typography>
       }>
@@ -85,12 +96,12 @@ export function DashboardPage(props) {
               <Card elevation={3} className={classes.card}>
                 <CardActionArea className={classes.card} onClick={() => setOpenShow(show.id)}>
                   <CardContent className={classes.topCard}>
-                    <Typography variant='h5'>
+                    <Typography variant='h5' component='h2' className={classes.header}>
                       {show.name}
                     </Typography>
                   </CardContent>
                   {show.description &&
-                    <CardContent>
+                    <CardContent className={classes.textContent}>
                       <Typography color='textSecondary'>
                         {show.description}
                       </Typography>
