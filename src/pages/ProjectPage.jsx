@@ -12,6 +12,7 @@ import { LoadingIcon } from 'components/shared/LoadingIcon';
 
 import { AboutProject } from 'components/dotshop/pages/projects/AboutProject';
 import { Movements } from 'components/dotshop/pages/projects/Movments';
+import { updateStateObjectByKey } from 'utilities/StateHelpers';
 
 const useStyles = makeStyles(theme => ({
   leftAlignText: {
@@ -20,6 +21,10 @@ const useStyles = makeStyles(theme => ({
   centeredDivider: {
     marginRight: 'auto',
     marginLeft: 'auto',
+  },
+  header: {
+    textDecoration: 'none',
+    fontFamily: 'comfortaa',
   }
 }))
 
@@ -29,6 +34,7 @@ export function ProjectPage(props) {
   let projectID = queryParams.get('show');
 
   const [project, setProject] = React.useState();
+  const updateProject = (key, value) => updateStateObjectByKey(key, value, setProject);
 
   useEffect(() => {
     if (projectID) {
@@ -49,7 +55,7 @@ export function ProjectPage(props) {
         <FullPage>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <Typography variant='h4'>
+              <Typography variant='h4' component='h1' className={classes.header}>
                 {project.name || 'No show here'}
               </Typography>
             </Grid>
@@ -59,7 +65,7 @@ export function ProjectPage(props) {
             </Grid>
 
             <Grid item xs={12} md={7}>
-              <Movements project={project} />
+              <Movements project={project} updateProject={updateProject} />
             </Grid>
 
             <Grid item xs={12} md={1}>

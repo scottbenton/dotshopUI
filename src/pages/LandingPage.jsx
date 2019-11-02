@@ -14,6 +14,10 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
+  header: {
+    textDecoration: 'none',
+    fontFamily: 'comfortaa',
+  },
 }));
 
 export function LandingPage(props) {
@@ -27,10 +31,13 @@ export function LandingPage(props) {
 
   return (
     <FullPage>
-      <Typography variant='h4'>
-        Welcome to dotshop
+      <Typography variant='h3' component='h1' className={classes.header}>
+        Welcome to
       </Typography>
-      <Typography variant='h5' color='textSecondary' gutterBottom>
+      <Typography variant='h2' component='h1' className={classes.header} gutterBottom>
+        dotshop
+      </Typography>
+      <Typography variant='h5' component='h2' color='textSecondary' gutterBottom>
         A drill writing web application for Marching Band Show designers.
       </Typography>
       {user ?
