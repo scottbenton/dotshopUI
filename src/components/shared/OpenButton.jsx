@@ -1,16 +1,16 @@
 import React from 'react';
-import { Button, Fab } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 export function OpenButton(props) {
-  const { fab, buttonContent, children, ...other } = props;
+  const { fab, buttonContent, component, children, ...other } = props;
   const [open, setOpen] = React.useState(false);
 
   return (
     <>
       {
-        fab ? <Fab onClick={() => setOpen(true)} {...other}>
-          {buttonContent}
-        </Fab> :
+        component ?
+          React.cloneElement(component, { onClick: () => setOpen(true) })
+          :
           <Button onClick={() => setOpen(true)} {...other}>
             {buttonContent}
           </Button>

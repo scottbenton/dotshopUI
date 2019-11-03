@@ -5,7 +5,6 @@ export function useQuery() {
 }
 
 export function makeQueryParams(queryParams) {
-  console.log(queryParams);
   let paramString = '';
   if (queryParams) {
     paramString += '?'
