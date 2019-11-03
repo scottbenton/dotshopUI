@@ -6,7 +6,8 @@ import {
   Grid,
   Card,
   CardContent,
-  CardActionArea
+  CardActionArea,
+  Fab
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { HeaderPage } from 'components/shared/HeaderPage';
@@ -71,10 +72,10 @@ export function DashboardPage(props) {
   }, []);
 
   useEffect(() => {
-    if (user) {
+    if (user && !Array.isArray(shows)) {
       getShows();
     }
-  }, [getShows, user]);
+  }, [getShows, user, shows]);
 
   return (
     <>
@@ -117,8 +118,12 @@ export function DashboardPage(props) {
         in={true}
         timeout={theme.transitions.duration.enteringScreen}
       >
-        <OpenButton fab className={classes.fab} color='secondary' buttonContent={<AddIcon />}>
-          <AddProjectDialog />
+        <OpenButton component={
+          <Fab color='secondary' className={classes.fab}>
+            <AddIcon />
+          </Fab>
+        }>
+          <AddProjectDialog callback={() => setShows()} />
         </OpenButton>
       </Zoom>
     </>

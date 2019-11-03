@@ -3,8 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
   Typography,
-  Divider
+  Divider,
+  IconButton
 } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
+
+import { EditProjectDialog } from './EditProjectDialog';
+import { OpenButton } from 'components/shared/OpenButton';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,16 +27,29 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export function AboutProject(props) {
-  const { project } = props;
+  const { project, setProject, updateProject, projectID, } = props;
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Typography variant='h5' component='h2' gutterBottom className={classes.header}>
+        <Grid item xs={10}>
+          <Typography variant='h5' component='h2' className={classes.header}>
             Show Details
           </Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <OpenButton component={<IconButton>
+            <EditIcon />
+          </IconButton>
+          }>
+            <EditProjectDialog
+              projectInfo={project}
+              updateProjectInfo={updateProject}
+              projectID={projectID}
+              callback={() => setProject()}
+            />
+          </OpenButton>
         </Grid>
 
         <Grid item xs={12}>

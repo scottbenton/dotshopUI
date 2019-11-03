@@ -37,7 +37,7 @@ export function ProjectPage(props) {
   const updateProject = (key, value) => updateStateObjectByKey(key, value, setProject);
 
   useEffect(() => {
-    if (projectID) {
+    if (projectID && typeof project !== 'object') {
       api.get('projects/' + projectID).then(response => {
         if (response.ok) {
           setProject(response.data.data);
@@ -47,7 +47,7 @@ export function ProjectPage(props) {
         }
       })
     }
-  }, [projectID]);
+  }, [projectID, project]);
 
   return (
     <>
@@ -73,7 +73,7 @@ export function ProjectPage(props) {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <AboutProject project={project} />
+              <AboutProject project={project} setProject={setProject} updateProject={updateProject} projectID={projectID} />
             </Grid>
           </Grid>
         </FullPage>

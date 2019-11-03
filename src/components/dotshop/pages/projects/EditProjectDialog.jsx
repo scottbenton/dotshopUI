@@ -1,19 +1,15 @@
 import React from 'react';
 import { api } from 'api/api';
 
-import { updateStateObjectByKey } from 'utilities/StateHelpers';
 import { ProjectDialog } from 'components/dotshop/shared/projects/ProjectDialog';
 
-export function AddProjectDialog(props) {
-  const { open, setOpen, callback } = props;
+export function EditProjectDialog(props) {
+  const { open, setOpen, callback, projectInfo, updateProjectInfo, projectID } = props;
   const [loading, setLoading] = React.useState(false);
 
-  const [projectInfo, setProjectInfo] = React.useState({});
-  const updateProjectInfo = (key, value) => updateStateObjectByKey(key, value, setProjectInfo);
-
-  const handleSubmit = () => {
+  const handleUpdate = () => {
     setLoading(true);
-    api.post('projects', projectInfo).then((response) => {
+    api.put('projects/' + projectID, projectInfo).then((response) => {
       if (response.ok) {
         setOpen(false);
         callback();
@@ -24,12 +20,12 @@ export function AddProjectDialog(props) {
 
   const actions = [
     { label: 'Cancel', onClick: () => setOpen(false) },
-    { label: 'Create', onClick: () => handleSubmit(), color: 'secondary' }
+    { label: 'Update', onClick: () => handleUpdate(), color: 'secondary' }
   ];
 
   return (
     <ProjectDialog
-      title='Create Project'
+      title='Update Project'
       projectInfo={projectInfo}
       updateProjectInfo={updateProjectInfo}
       open={open}
