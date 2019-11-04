@@ -4,12 +4,12 @@ import { api } from 'api/api';
 import { ProjectDialog } from 'components/dotshop/shared/projects/ProjectDialog';
 
 export function EditProjectDialog(props) {
-  const { open, setOpen, callback, projectInfo, updateProjectInfo, projectID } = props;
+  const { open, setOpen, callback, projectInfo, updateProjectInfo } = props;
   const [loading, setLoading] = React.useState(false);
 
   const handleUpdate = () => {
     setLoading(true);
-    api.put('projects/' + projectID, projectInfo).then((response) => {
+    api.put('projects/' + projectInfo.id, projectInfo).then((response) => {
       if (response.ok) {
         setOpen(false);
         callback();

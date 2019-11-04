@@ -14,6 +14,7 @@ import {
   Droppable,
   Draggable
 } from 'react-beautiful-dnd';
+
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100%',
@@ -34,10 +35,15 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
 export function Movements(props) {
   const { project, updateProject } = props;
+  const { movements } = project;
   const classes = useStyles();
+
+  let movementsArray = Object.keys(movements);
+  movementsArray = movementsArray.sort((a, b) => {
+    return movements[a].index - movements[b].index;
+  });
 
   const onDragEnd = result => {
     const { destination, source } = result;
@@ -49,10 +55,17 @@ export function Movements(props) {
       return;
     }
     const { movements } = project;
-    const newMovements = [...movements];
-    const movingItem = newMovements.splice(source.index, 1);
-    newMovements.splice(destination.index, 0, movingItem[0]);
-    // TODO 
+    const newMovements = { ...movements };
+
+    const newMovementsArray = [...movementsArray];
+
+    const movingItem = newMovementsArray.splice(source.index, 1);
+    newMovementsArray.splice(destination.index, 0, movingItem[0]);
+
+    newMovementsArray.forEach((key, index) => {
+      newMovements[key].index = index;
+    });
+    console.log(newMovements);
     updateProject('movements', newMovements);
   }
 
@@ -64,11 +77,10 @@ export function Movements(props) {
             Movements
           </Typography>
         </Grid>
-        {Array.isArray(project.movements) &&
+        {Array.isArray(movementsArray) &&
           <DragDropContext
             onDragEnd={onDragEnd}
           >
-
             <Grid item xs={12}>
               <Droppable droppableId='MovementList'>
                 {(provided) => (
@@ -77,8 +89,8 @@ export function Movements(props) {
                     innerRef={provided.innerRef}
                     {...provided.droppableProps}
                   >
-                    {project.movements.map((movement, index) => (
-                      <Draggable key={movement.name} draggableId={movement.name} index={index}>
+                    {movementsArray.map((movementKey, index) => (
+                      <Draggable key={movements[movementKey].name} draggableId={movements[movementKey].name} index={index}>
                         {(provided) => (
                           <Paper
                             className={classes.movement}
@@ -88,12 +100,12 @@ export function Movements(props) {
                             {...provided.draggableProps}
                           >
                             <Typography>
-                              {movement.name}
+                              {movements[movementKey].name}
                             </Typography>
                           </Paper>
                         )}
-                      </Draggable>
 
+                      </Draggable>
                     ))}
                     {provided.placeholder}
                   </Container>

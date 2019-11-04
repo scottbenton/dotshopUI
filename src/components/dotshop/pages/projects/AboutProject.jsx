@@ -23,11 +23,14 @@ const useStyles = makeStyles(theme => ({
   },
   description: {
     whiteSpace: 'pre-wrap'
+  },
+  iconButton: {
+    marginTop: -12,
   }
 }));
 
 export function AboutProject(props) {
-  const { project, setProject, updateProject, projectID, } = props;
+  const { project, setProject, updateProject } = props;
   const classes = useStyles();
 
   return (
@@ -39,14 +42,13 @@ export function AboutProject(props) {
           </Typography>
         </Grid>
         <Grid item xs={2}>
-          <OpenButton component={<IconButton>
+          <OpenButton component={<IconButton className={classes.iconButton}>
             <EditIcon />
           </IconButton>
           }>
             <EditProjectDialog
               projectInfo={project}
               updateProjectInfo={updateProject}
-              projectID={projectID}
               callback={() => setProject()}
             />
           </OpenButton>

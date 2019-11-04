@@ -40,7 +40,7 @@ export function ProjectPage(props) {
     if (projectID && typeof project !== 'object') {
       api.get('projects/' + projectID).then(response => {
         if (response.ok) {
-          setProject(response.data.data);
+          setProject(response.data);
         }
         else {
           setProject({});
@@ -73,7 +73,7 @@ export function ProjectPage(props) {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <AboutProject project={project} setProject={setProject} updateProject={updateProject} projectID={projectID} />
+              <AboutProject project={project} setProject={setProject} updateProject={updateProject} />
             </Grid>
           </Grid>
         </FullPage>
