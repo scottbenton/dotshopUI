@@ -14,6 +14,7 @@ import {
   Droppable,
   Draggable
 } from 'react-beautiful-dnd';
+
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100%',
@@ -33,7 +34,6 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2)
   }
 }))
-
 
 export function Movements(props) {
   const { project, updateProject } = props;
@@ -92,8 +92,8 @@ export function Movements(props) {
                             </Typography>
                           </Paper>
                         )}
-                      </Draggable>
 
+                      </Draggable>
                     ))}
                     {provided.placeholder}
                   </Container>

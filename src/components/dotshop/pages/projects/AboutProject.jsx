@@ -23,6 +23,9 @@ const useStyles = makeStyles(theme => ({
   },
   description: {
     whiteSpace: 'pre-wrap'
+  },
+  iconButton: {
+    marginTop: -12,
   }
 }));
 
@@ -39,7 +42,7 @@ export function AboutProject(props) {
           </Typography>
         </Grid>
         <Grid item xs={2}>
-          <OpenButton component={<IconButton>
+          <OpenButton component={<IconButton className={classes.iconButton}>
             <EditIcon />
           </IconButton>
           }>

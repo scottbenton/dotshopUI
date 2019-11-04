@@ -10,6 +10,8 @@ import { PAGES } from 'constants/Pages';
 import { useCurrentUser } from 'api/auth/FirebaseUser';
 import { useAuth } from 'api/auth/FirebaseContext';
 
+import UndrawHeader from 'resources/images/undraw_dotshop.png';
+
 const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
@@ -18,6 +20,10 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
     fontFamily: 'comfortaa',
   },
+  image: {
+    width: '80%',
+    maxWidth: 500
+  }
 }));
 
 export function LandingPage(props) {
@@ -37,6 +43,7 @@ export function LandingPage(props) {
       <Typography variant='h2' component='h1' className={classes.header} gutterBottom>
         dotshop
       </Typography>
+      <img src={UndrawHeader} alt='UndrawHeader' className={classes.image} />
       <Typography variant='h5' component='h2' color='textSecondary' gutterBottom>
         A drill writing web application for Marching Band Show designers.
       </Typography>
