@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export function AboutProject(props) {
-  const { project, setProject, updateProject, projectID, } = props;
+  const { project, setProject, updateProject } = props;
   const classes = useStyles();
 
   return (
@@ -49,7 +49,6 @@ export function AboutProject(props) {
             <EditProjectDialog
               projectInfo={project}
               updateProjectInfo={updateProject}
-              projectID={projectID}
               callback={() => setProject()}
             />
           </OpenButton>
